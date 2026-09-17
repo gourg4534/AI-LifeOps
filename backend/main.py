@@ -1,23 +1,21 @@
 from fastapi import FastAPI
-from dotenv import load_dotenv
-import os
+from .config import APP_NAME, APP_ENV
 
-load_dotenv()
-
-app = FastAPI(title=os.getenv("APP_NAME", "AI LifeOps API"))
+app = FastAPI(title=f"{APP_NAME} API")
 
 
 @app.get("/")
 def home():
     return {
-        "message": "AI LifeOps API is running",
+        "message": f"{APP_NAME} API is running",
         "status": "success",
-        "environment": os.getenv("APP_ENV", "unknown")
+        "environment": APP_ENV
     }
+
 
 @app.get("/health")
 def health_check():
     return {
         "status": "healthy",
-        "service": "AI LifeOps API"
+        "service": f"{APP_NAME} API"
     }
