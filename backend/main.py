@@ -14,3 +14,10 @@ def home():
         "status": "success",
         "environment": os.getenv("APP_ENV", "unknown")
     }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "service": "AI LifeOps API"
+    }
