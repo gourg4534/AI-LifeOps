@@ -1,7 +1,11 @@
 from fastapi import FastAPI
-from .config import APP_NAME, APP_ENV
+
+from backend.config import APP_NAME, APP_ENV
+from backend.routes import router
 
 app = FastAPI(title=f"{APP_NAME} API")
+
+app.include_router(router)
 
 
 @app.get("/")
